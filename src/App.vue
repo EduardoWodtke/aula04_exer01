@@ -8,19 +8,24 @@ const confirmaçãoDeSenha = ref('')
 const dataDeNascimento = ref('')
 const Endereço = ref('')
 const Cidade = ref('')
+const bio = ref('')
+const hob = ref('')
+const ativo = ref(true)
 </script>
 
 <template>
-  <div >
-    <input type="text" v-model="nome" placeholder="Nome" />
-    <input type="email" v-model="email" placeholder="email" />
-    <input type="password" v-model="senha" placeholder="senha" />
-    <input type="password" v-model="confirmaçãoDeSenha" placeholder="Confirmação de senha" />
-    <input type="date" v-model="dataDeNascimento" placeholder="Data de nascimento" />
-    <input type="number" v-model="Endereço" placeholder="Endereço" />
-    <input type="text" v-model="Cidade" placeholder="Cidade" />
+  <form>
+  <div v-if="ativo === true">
+    <input type="text" v-model="nome" placeholder="NOME" required/>
+    <input type="email" v-model="email" placeholder="EMAIL" required/>
+    <input type="password" v-model="senha" placeholder="SENHA" minlength="8" maxlength="20" required/>
+    <input type="password" v-model="confirmaçãoDeSenha" placeholder="CONFIRMAÇÃO DA SENHA" required/>
+    <input type="date" v-model="dataDeNascimento" placeholder="DATA DE NASCIMENTO" required/>
+    <input type="number" v-model="Endereço" placeholder="ENDEREÇO" required/>
+    <input type="text" v-model="Cidade" placeholder="CIDADE" required/> 
     <label for="estado">Estado:</label>
-    <select>
+    <select required>
+      <option value="nada"></option>
       <option value="AC">Acre</option>
       <option value="AL">Alagoas</option>
       <option value="AP">Amapá</option>
@@ -49,11 +54,29 @@ const Cidade = ref('')
       <option value="SE">Sergipe</option>
       <option value="TO">Tocantins</option>
     </select>
+    <br>
+    <label for="estado">Linguagens de programação:</label>
+    <select>
+      <option value="nada"></option>
+      <option value="javascript">JavaScript</option>
+      <option value="python">Python</option>
+      <option value="java">Java</option>
+      <option value="csharp">C#</option>
+      <option value="php">PHP</option>
+    </select>
+    <br>
+    <textarea v-model="hob" placeholder="ESCREVA ALGUNS HOBIES" cols="50" rows="10" />
+    <br>
+    <textarea v-model="bio" placeholder="ESCREVA SUA BIOGRAFIA" cols="100" rows="20" />
+    <br>
+    <button type="submit" @submit.prevent="">Tudo pronto</button>
   </div>
+  <div v-else>
+  </div>
+</form>
 </template>
 
 <style scoped>
-/* Estiliza o contêiner pai do formulário */
 div {
   display: flex;
   flex-direction: column;
@@ -61,7 +84,6 @@ div {
   margin-top: 50px;
 }
 
-/* Estiliza os campos do formulário */
 input, select {
   width: 300px;
   height: 30px;
@@ -74,30 +96,27 @@ input, select {
   box-sizing: border-box;
 }
 
-/* Estiliza o rótulo do campo Estado */
 label {
   font-size: 16px;
   font-family: sans-serif;
   margin-bottom: 10px;
 }
 
-/* Estiliza o botão de envio do formulário */
 button {
-  width: 150px;
-  height: 40px;
-  margin-top: 20px;
-  background-color: blue;
-  color: white;
-  font-size: 16px;
-  font-family: sans-serif;
-  border: none;
-  cursor: pointer;
-}
+        background-color: #3498db;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 5px 0px #2980b9;
+        color: #ffffff;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        transition: all 0.3s ease-in-out;
+      }
 
-/* Estiliza o botão de envio do formulário quando o mouse passa por cima dele */
-button:hover {
-  background-color: darkblue;
-}
-
+      button:hover {
+        background-color: #2980b9;
+        box-shadow: 0px 5px 0px #2c3e50;
+        cursor: pointer;
+      }
 
 </style>
