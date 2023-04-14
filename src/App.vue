@@ -23,7 +23,7 @@ const linPrograma = ref([])
     <input id="inpu" type="password" v-model="senha" placeholder="SENHA" minlength="8" maxlength="20" required/>
     <input id="inpu" type="password" v-model="confirmaçãoDeSenha" placeholder="CONFIRMAÇÃO DA SENHA" required/>
     <input id="inpu" type="date" v-model="dataDeNascimento" placeholder="DATA DE NASCIMENTO"/>
-    <input id="inpu" type="number" v-model="Endereço" placeholder="ENDEREÇO" required/>
+    <input id="inpu" type="text" v-model="Endereço" placeholder="ENDEREÇO" required/>
     <input id="inpu" type="text" v-model="Cidade" placeholder="CIDADE" required/> 
     <label for="estado">Estado:</label>
     <select required>
@@ -80,6 +80,7 @@ const linPrograma = ref([])
 <p>Endereço: {{Endereço}}</p>
 <p>Cidade: {{ Cidade }}</p>
 <p>linguagem programa: {{ linPrograma }}</p>
+<p>hobbies: {{ hob }}</p>
 <p>Biografia: {{ bio }}</p>
 </div>
 </template>
