@@ -10,19 +10,19 @@ const Endereço = ref('')
 const Cidade = ref('')
 const bio = ref('')
 const hob = ref('')
-const ativo = ref(true)
+const ativo = ref(false)
 const linPrograma = ref([])
 </script>
 
 <template>
-  <form>
-  <h1>Ganhe robux</h1>
-  <div v-if="ativo === true">
-    <input id="inpu" type="text" v-model="nome" placeholder="NOME" required/>
-    <input id="inpu" type="email" v-model="email" placeholder="EMAIL" required/>
+  <h1>Forms</h1>
+  <form @submit.prevent="ativo = !ativo">
+  <div>
+    <input id="inpu" type="text" v-model.lazy="nome" placeholder="NOME" required/>
+    <input id="inpu" type="text" v-model="email" placeholder="EMAIL" required/>
     <input id="inpu" type="password" v-model="senha" placeholder="SENHA" minlength="8" maxlength="20" required/>
     <input id="inpu" type="password" v-model="confirmaçãoDeSenha" placeholder="CONFIRMAÇÃO DA SENHA" required/>
-    <input id="inpu" type="date" v-model="dataDeNascimento" placeholder="DATA DE NASCIMENTO" required/>
+    <input id="inpu" type="date" v-model="dataDeNascimento" placeholder="DATA DE NASCIMENTO"/>
     <input id="inpu" type="number" v-model="Endereço" placeholder="ENDEREÇO" required/>
     <input id="inpu" type="text" v-model="Cidade" placeholder="CIDADE" required/> 
     <label for="estado">Estado:</label>
@@ -68,24 +68,29 @@ const linPrograma = ref([])
     <br>
     <textarea v-model="bio" placeholder="ESCREVA SUA BIOGRAFIA" cols="100" rows="20" />
     <br>
-    <button @click="ativo" type="submit" >Tudo pronto</button>
+    <button type="submit">Tudo pronto</button>
   </div>
 </form>
-<div v-if="ativo === false">
-<p>{{ nome }}</p>
-<p>{{ email }}</p>
-<p>{{ senha }}</p>
-<p>{{confirmaçãoDeSenha}}</p>
-<p>{{dataDeNascimento}}</p>
-<p>{{Endereço}}</p>
-<p>{{ Cidade }}</p>
-<p>{{ linPrograma }}</p>
-<p>{{ bio }}</p>
-<p>{{ linPrograma }}</p>
+<div v-if="ativo">
+<p>Nome: {{ nome }}</p>
+<p>email: {{ email }}</p>
+<p>Senha: {{ senha }}</p>
+<p>confirmar senha: {{confirmaçãoDeSenha}}</p>
+<p>data de nascimento: {{dataDeNascimento}}</p>
+<p>Endereço: {{Endereço}}</p>
+<p>Cidade: {{ Cidade }}</p>
+<p>linguagem programa: {{ linPrograma }}</p>
+<p>Biografia: {{ bio }}</p>
 </div>
 </template>
 
 <style scoped>
+h1{
+  text-align: center;
+  font-size: 60px;
+  text-decoration: underline;
+}
+
 div {
   display: flex;
   flex-direction: column;
@@ -93,7 +98,7 @@ div {
   margin-top: 50px;
 }
 
-#inpu, select {
+#inpu, select, p{
   width: 300px;
   height: 30px;
   margin-bottom: 10px;
